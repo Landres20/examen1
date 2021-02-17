@@ -9,8 +9,10 @@ namespace ParallelismExam1.Console
 {
     public class Process
     {
+        static readonly CancellationTokenSource s_cts = new CancellationTokenSource();
         public async Task RunAsync()
         {
+            s_cts.CancelAfter(3500);
             await File.WriteAllTextAsync(@"data\text.txt", "Starting process");
             for (int i = 0; i < 1000000; i++)
             {
